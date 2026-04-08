@@ -7,7 +7,9 @@ export const portfolioData = {
 With hands-on experience in real client projects including business systems and e-commerce platforms, I focus on delivering clean, efficient, and user-friendly solutions.`,
   },
 
-  about: `I'm Raghulkumar K S, a MERN Stack Developer with professional experience at Ematix Embedded and Software Solutions Pvt. Ltd.
+  about: `I'm Raghulkumar K S, a MERN Stack Developer with professional experience at Ematix Embedded and Software Solutions Pvt. Ltd.(June 2025 - March 2026).
+  
+  I have a strong foundation in computer science and a passion for building web applications that solve real-world problems.
 
 I specialize in building full stack web applications using React.js, Node.js, Express.js, and MongoDB.
 
@@ -24,7 +26,7 @@ My goal is to grow as a software engineer and contribute to innovative and impac
   experience: {
     role: "MERN Stack Developer",
     company: "Ematix Embedded and Software Solutions Pvt. Ltd.",
-    duration: "June 2025 – Present",
+    duration: "June 2025 – March 2026",
     points: [
       "Developed full stack web applications using MERN stack.",
       "Built responsive user interfaces using React.js and Tailwind CSS.",
