@@ -1,11 +1,12 @@
 import { portfolioData } from "../data/portfolioData";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 const Projects = () => {
   return (
     <section id="projects" className="py-32 px-6 max-w-7xl mx-auto">
-      <h2 className="text-5xl font-semibold text-center mb-24">
+      <h2 className="text-5xl font-semibold text-center mb-24 font-['Playfair_Display']">
         Projects
       </h2>
 
@@ -86,7 +87,7 @@ const ProjectCard = ({ project }) => {
           {project.title}
         </h3>
 
-        <p className="text-indigo-500 text-sm mb-3">
+        <p className="text-indigo-500 text-sm mb-3 font-medium">
           {project.tech}
         </p>
 
@@ -95,21 +96,19 @@ const ProjectCard = ({ project }) => {
         </p>
 
         <div className="flex gap-4">
-          {/* <motion.button
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-2.5 bg-indigo-600 text-white rounded-xl shadow-lg"
-          >
-            Live Demo
-          </motion.button> */}
-
-          {/* <motion.button
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-2.5 border border-indigo-600 text-indigo-600 dark:text-indigo-400 rounded-xl"
-          >
-            GitHub
-          </motion.button> */}
+          {(project.link || project.liveLink) && (
+            <motion.a
+              href={project.link || project.liveLink}
+              target={(project.link || project.liveLink) !== "#" ? "_blank" : "_self"}
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium text-sm rounded-xl shadow-lg hover:shadow-indigo-500/25 transition-all duration-300"
+            >
+              <span>Link</span>
+              <FaExternalLinkAlt className="text-xs" />
+            </motion.a>
+          )}
         </div>
       </motion.div>
     </div>

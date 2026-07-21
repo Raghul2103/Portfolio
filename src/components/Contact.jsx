@@ -28,6 +28,8 @@
 import { portfolioData } from "../data/portfolioData";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaGithub, FaLinkedin, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 
 const Contact = () => {
   const { contact } = portfolioData;
@@ -37,24 +39,107 @@ const Contact = () => {
     <>
       <section
         id="contact"
-        className="py-28 px-6 max-w-4xl mx-auto text-center"
+        className="py-28 px-6 max-w-5xl mx-auto text-center"
       >
-        <h2 className="text-4xl font-semibold mb-10">Contact Me</h2>
+        <h2 className="text-4xl font-semibold mb-4 font-['Playfair_Display']">Contact Me</h2>
 
-        <p className="mb-6 text-gray-600 dark:text-gray-300">
-          I'm always open to new opportunities and collaborations.
+        <p className="mb-10 text-gray-600 dark:text-gray-300 max-w-lg mx-auto">
+          I'm always open to new opportunities, collaborations, and tech discussions. Feel free to reach out!
         </p>
 
-        <div className="space-y-3 text-lg">
-          <p>📧 {contact.email}</p>
-          <p>📞 {contact.phone}</p>
-          <p>💻 {contact.github}</p>
-          <p>📍 {contact.location}</p>
+        {/* ===== Contact Links Grid ===== */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-left mb-10">
+          {/* Email */}
+          <a
+            href={`mailto:${contact.email}`}
+            className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-lg transition duration-300 group"
+          >
+            <div className="p-3 rounded-xl bg-purple-100 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 group-hover:scale-110 transition">
+              <FaEnvelope className="text-xl" />
+            </div>
+            <div className="overflow-hidden">
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Email</p>
+              <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 truncate">{contact.email}</p>
+            </div>
+          </a>
+
+          {/* Phone */}
+          <a
+            href={`tel:${contact.phone}`}
+            className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-lg transition duration-300 group"
+          >
+            <div className="p-3 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition">
+              <FaPhone className="text-xl" />
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Phone</p>
+              <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">{contact.phone}</p>
+            </div>
+          </a>
+
+          {/* GitHub */}
+          <a
+            href={contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm hover:border-gray-900 dark:hover:border-gray-400 hover:shadow-lg transition duration-300 group"
+          >
+            <div className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white group-hover:scale-110 transition">
+              <FaGithub className="text-xl" />
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">GitHub</p>
+              <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">Raghul2103</p>
+            </div>
+          </a>
+
+          {/* LinkedIn */}
+          <a
+            href={contact.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-lg transition duration-300 group"
+          >
+            <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition">
+              <FaLinkedin className="text-xl" />
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">LinkedIn</p>
+              <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">raghulkumar2103</p>
+            </div>
+          </a>
+
+          {/* LeetCode */}
+          <a
+            href={contact.leetcode}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm hover:border-amber-500 dark:hover:border-amber-500 hover:shadow-lg transition duration-300 group"
+          >
+            <div className="p-3 rounded-xl bg-amber-100 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition">
+              <SiLeetcode className="text-xl" />
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">LeetCode</p>
+              <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">Raghul2103</p>
+            </div>
+          </a>
+
+          {/* Location */}
+          <div className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm">
+            <div className="p-3 rounded-xl bg-red-100 dark:bg-red-950/50 text-red-600 dark:text-red-400">
+              <FaMapMarkerAlt className="text-xl" />
+            </div>
+            <div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Location</p>
+              <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">{contact.location}</p>
+            </div>
+          </div>
         </div>
 
         <button
           onClick={() => setOpen(true)}
-          className="mt-8 px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition shadow-lg hover:scale-105"
+          className="mt-2 px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition shadow-lg hover:scale-105"
         >
           Send Message
         </button>

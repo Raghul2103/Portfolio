@@ -22,9 +22,11 @@
 
 import { motion } from "framer-motion";
 import { portfolioData } from "../data/portfolioData";
+import { FaGraduationCap, FaSchool, FaAward } from "react-icons/fa";
 
 const Education = () => {
   const { education } = portfolioData;
+  const eduList = Array.isArray(education) ? education : [education];
 
   // Animation Variants
   const containerVariants = {
@@ -45,15 +47,8 @@ const Education = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  // Logic for Circular Progress (Assuming CGPA is out of 10)
-  const radius = 45;
-  const circumference = 2 * Math.PI * radius;
-  // Calculate stroke offset (defaulting to 10 scale, adjust denominator if needed)
-  const percentage = (education.cgpa / 10) * 100;
-  const strokeDashoffset = circumference - (percentage / 100) * circumference;
-
   return (
-    <section className="relative py-24 px-6 overflow-hidden min-h-[60vh] flex items-center justify-center">
+    <section id="education" className="relative py-24 px-6 overflow-hidden min-h-[60vh] flex items-center justify-center">
       
       {/* 1. Animated Mesh Gradient Background */}
       <div className="absolute inset-0 z-0 opacity-40 dark:opacity-30">
@@ -90,124 +85,57 @@ const Education = () => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        className="relative z-10 w-full max-w-3xl"
+        viewport={{ once: true, amount: 0.2 }}
+        className="relative z-10 w-full max-w-5xl"
       >
         {/* Section Header */}
-        <motion.div variants={itemVariants} className="text-center mb-12">
+        <motion.div variants={itemVariants} className="text-center mb-16">
           <span className="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-2 block">
             Academic Background
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white tracking-tight font-['Playfair_Display']">
             Education
           </h2>
         </motion.div>
 
-        {/* 2. The "Credential" Card - Split Layout */}
-        <motion.div
-          variants={itemVariants}
-          className="group relative bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden border border-white/50 dark:border-slate-800 transition-all duration-500 hover:shadow-indigo-500/10"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-          <div className="relative flex flex-col md:flex-row items-stretch">
-            
-            {/* Left Column: Academic Details */}
-            <div className="flex-1 p-8 md:p-12 text-left border-b md:border-b-0 md:border-r border-slate-200/50 dark:border-slate-700/50 flex flex-col justify-center">
-              <motion.div variants={itemVariants}>
-                <span className="inline-block px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-100 dark:bg-indigo-900/50 rounded-full mb-4">
-                  {education.duration}
-                </span>
-              </motion.div>
-
-              <motion.h3 
-                variants={itemVariants}
-                className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3 leading-tight"
-              >
-                {education.degree}
-              </motion.h3>
-
-              <motion.p 
-                variants={itemVariants}
-                className="text-lg text-slate-600 dark:text-slate-400 flex items-center gap-2"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                {education.college}
-              </motion.p>
-            </div>
-
-            {/* Right Column: CGPA Visualization */}
-            <div className="w-full md:w-2/5 p-8 md:p-12 flex flex-col items-center justify-center bg-slate-50/50 dark:bg-slate-800/30 relative overflow-hidden">
-              
-              {/* Background Decorative Number */}
-              <div className="absolute -bottom-10 -right-10 text-[150px] font-black text-slate-200/40 dark:text-slate-700/30 select-none">
-                CGPA
-              </div>
-
-              <div className="relative flex flex-col items-center">
-                {/* Animated Circular Progress */}
-                <div className="relative w-32 h-32">
-                  <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                    {/* Background Circle */}
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r={radius}
-                      stroke="currentColor"
-                      strokeWidth="6"
-                      fill="transparent"
-                      className="text-slate-200 dark:text-slate-700"
-                    />
-                    {/* Progress Circle */}
-                    <motion.circle
-                      cx="50"
-                      cy="50"
-                      r={radius}
-                      stroke="url(#gradient)"
-                      strokeWidth="6"
-                      fill="transparent"
-                      strokeLinecap="round"
-                      initial={{ strokeDashoffset: circumference }}
-                      whileInView={{ strokeDashoffset: strokeDashoffset }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-                    />
-                    <defs>
-                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#818cf8" />
-                        <stop offset="100%" stopColor="#c084fc" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                  
-                  {/* CGPA Text inside circle */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <motion.span 
-                      className="text-4xl font-bold text-slate-800 dark:text-white"
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 1 }}
-                    >
-                      {education.cgpa}
-                    </motion.span>
-                    <span className="text-xs font-medium text-slate-500 dark:text-slate-400">out of 10</span>
+        {/* Education List Cards */}
+        <div className="space-y-8">
+          {eduList.map((item, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="group relative bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg rounded-3xl p-8 shadow-xl border border-white/50 dark:border-slate-800 transition-all duration-300 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-2xl"
+            >
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="flex items-start gap-5">
+                  <div className="p-4 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 text-2xl group-hover:scale-110 transition duration-300 shrink-0">
+                    {index === 0 ? <FaGraduationCap /> : <FaSchool />}
+                  </div>
+                  <div>
+                    <span className="inline-block px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-100 dark:bg-indigo-900/50 rounded-full mb-2">
+                      {item.duration}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                      {item.degree}
+                    </h3>
+                    <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">
+                      {item.college}
+                    </p>
                   </div>
                 </div>
 
-                <motion.p 
-                  variants={itemVariants}
-                  className="mt-4 text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider"
-                >
-                  Academic Score
-                </motion.p>
+                <div className="md:text-right shrink-0">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 border border-purple-200 dark:border-purple-800/50">
+                    <FaAward className="text-amber-500 text-lg" />
+                    <span className="text-lg font-bold text-purple-600 dark:text-purple-400">
+                      {item.score || item.cgpa}
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
     </section>
   );

@@ -1,8 +1,11 @@
 import { portfolioData } from "../data/portfolioData";
 import profileImage from "../assets/profile.jpeg";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 
 const Hero = () => {
   const { name, role, description } = portfolioData.hero;
+  const { github, linkedin, leetcode } = portfolioData.contact;
 
   return (
     <section
@@ -44,7 +47,7 @@ const Hero = () => {
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-wrap justify-center gap-6 mt-12">
+        <div className="flex flex-wrap justify-center gap-6 mt-10">
 
           <a
             href="#contact"
@@ -61,6 +64,37 @@ const Hero = () => {
             My Resume ↓
           </a>
 
+        </div>
+
+        {/* Social Links */}
+        <div className="flex items-center justify-center gap-4 mt-8">
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3.5 rounded-full border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-slate-800/70 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 transition-all duration-300 shadow-sm hover:scale-110"
+            title="GitHub Profile"
+          >
+            <FaGithub className="text-xl" />
+          </a>
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3.5 rounded-full border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-slate-800/70 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 dark:hover:text-white transition-all duration-300 shadow-sm hover:scale-110"
+            title="LinkedIn Profile"
+          >
+            <FaLinkedin className="text-xl" />
+          </a>
+          <a
+            href={leetcode}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3.5 rounded-full border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-slate-800/70 hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 dark:hover:text-white transition-all duration-300 shadow-sm hover:scale-110"
+            title="LeetCode Profile"
+          >
+            <SiLeetcode className="text-xl" />
+          </a>
         </div>
 
       </div>
